@@ -37,6 +37,8 @@ Add Booking
     Dictionary Should Contain Key    dictionary=${response.json()}    key=bookingid
     ${NEW_ID}=      Get From Dictionary    dictionary=${response.json()}    key=bookingid
     Set Suite Variable      ${NEW_ID}
+    ${RESPONSE_BODY}=    Set Variable    ${response.json()}
+    Set Suite Variable      ${RESPONSE_BODY}
 
 Check New Booking Details Are Correct
     Add Booking
@@ -122,3 +124,6 @@ Delete non-existent booking
     ...                  Cookie=token=${TOKEN}
     Create Session      Delete Booking      ${BASE_URL}     verify=True
     ${response}=        DELETE On Session     Delete Booking      url=${BOOKING}/999999     headers=${HEADERS}    expected_status=405    msg=Status code should be 405.
+
+Validate JSON Schema
+    Validate Json By Schema File    ${RESPONSE_BODY}    data/json_schema.json

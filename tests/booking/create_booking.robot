@@ -8,3 +8,8 @@ Suite Setup      Ping Server
 Add New Booking
     [Tags]  booking
     Add Booking
+
+Validate JSON Schema
+    [Tags]  booking
+    Add Booking
+    Validate JSON Schema
